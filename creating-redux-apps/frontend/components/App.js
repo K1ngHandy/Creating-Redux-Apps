@@ -4,7 +4,18 @@ import { increment, nextDay } from '../state/slice';
 
 export default function App() {
 	const count = useSelector((st) => st.state.count);
-	const day = 'Monday';
+	const day = useSelector((st) => {
+		const days = [
+			'Sunday',
+			'Monday',
+			'Tuesday',
+			'Wednesday',
+			'Thursday',
+			'Friday',
+			'Saturday',
+		];
+		return days[st.state.day];
+	});
 	const dispatch = useDispatch();
 	return (
 		<div>
@@ -20,7 +31,7 @@ export default function App() {
 			<button
 				onClick={() => {
 					const action = nextDay();
-					debugger;
+					// debugger;
 					dispatch(action);
 				}}
 			>

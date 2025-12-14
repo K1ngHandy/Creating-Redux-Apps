@@ -11,7 +11,8 @@ const slice = createSlice({
 			state.count++;
 		},
 		nextDay(state, action) {
-			debugger;
+			const next = state.day === 6 ? 0 : state.day + 1;
+			state.day = next;
 		},
 	},
 });
