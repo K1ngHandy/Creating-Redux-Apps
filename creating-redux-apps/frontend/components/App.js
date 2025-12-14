@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { increment, nextDay } from '../state/slice';
+import { increment, nextDay, save, spend } from '../state/slice';
 
 export default function App() {
 	const count = useSelector((st) => st.state.count);
@@ -16,6 +16,7 @@ export default function App() {
 		];
 		return days[st.state.day];
 	});
+	const savings = useSelector((st) => st.state.savings);
 	const dispatch = useDispatch();
 	return (
 		<div>
@@ -36,6 +37,23 @@ export default function App() {
 				}}
 			>
 				The day is {day}
+			</button>
+			<h3>Savings are at ${savings}</h3>
+			<button
+				onClick={() => {
+					const action = save(10);
+					dispatch(action);
+				}}
+			>
+				Save $10
+			</button>
+			<button
+				onClick={() => {
+					const action = spend(5);
+					dispatch(action);
+				}}
+			>
+				Spend $5
 			</button>
 		</div>
 	);
